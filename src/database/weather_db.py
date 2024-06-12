@@ -1,5 +1,7 @@
 import os
 import sys
+import schedule
+import time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scraping.scraper import scrape_weather_data
 from conn import conn, cursor
@@ -36,6 +38,15 @@ def insert_data():
     conn.commit()
     #print("Data inserted successfully.")
 
-# Execute table creation and data insertion
-create_table()
-insert_data()
+
+def new_day():
+    create_table()
+    insert_data()
+
+schedule.every().day.at("00:00").do(new_day)
+
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+
