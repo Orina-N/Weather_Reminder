@@ -43,7 +43,7 @@ def new_day():
     create_table()
     insert_data()
 
-schedule.every().day.at("00:00").do(new_day)
+schedule.every(6).hours.do(new_day)
 
 
 while True:

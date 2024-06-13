@@ -1,4 +1,6 @@
 import smtplib
+import schedule
+import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from conn2 import conn, cursor
@@ -49,5 +51,10 @@ def check_rain_and_notify(recipient_email):
             send_email(recipient_email, subject, message)
 
 # Example usage
-recipient_email = "victor.wangari@student.moringaschool.com"
-check_rain_and_notify(recipient_email)
+recipient_email = "nelsonorinamecha@gmail.com"
+
+schedule.every().day.at('06:30').do(check_rain_and_notify,recipient_email)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
