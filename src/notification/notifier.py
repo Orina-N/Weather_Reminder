@@ -8,8 +8,8 @@ from conn2 import conn, cursor
 # Function to send email notification
 def send_email(recipient_email, subject, message):
     # Email configuration
-    sender_email = "orinamecha@gmail.com"
-    sender_password = "eyhp uiyv qfff twxk"
+    sender_email = "orinamecha2@gmail.com"
+    sender_password = "#### #### #### ####"
     
     # Create message
     msg = MIMEMultipart()
@@ -40,8 +40,8 @@ def check_rain_and_notify(recipient_email):
     if rain_chance_result:
         rain_chance = int(rain_chance_result[0].strip('%'))
         
-        # Define rain chance threshold (e.g., 50%)
-        threshold = 5
+        # Define rain chance threshold 
+        threshold = 30
         
         # Check if rain chance exceeds threshold
         if rain_chance >= threshold:
@@ -51,10 +51,10 @@ def check_rain_and_notify(recipient_email):
             send_email(recipient_email, subject, message)
 
 # Example usage
-recipient_email = "nelsonorinamecha@gmail.com"
+recipient_email = "victor.wangari@student.moringaschool.com"
 
-schedule.every().day.at('06:30').do(check_rain_and_notify,recipient_email)
+schedule.every().day.at("06:30").do(check_rain_and_notify,recipient_email)
 
 while True:
-    schedule.run_pending()
-    time.sleep(1)
+   schedule.run_pending()
+   time.sleep(1)
